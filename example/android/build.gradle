@@ -1,0 +1,41 @@
+buildscript {
+    ext.kotlin_version = '1.6.10'
+    repositories {
+        google()
+        mavenCentral()
+
+        //huawei 1
+        maven { url 'https://developer.huawei.com/repo/' }
+
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        //huawei 2
+        classpath 'com.huawei.agconnect:agcp:1.6.0.300'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+
+        //huawei 3
+        maven { url 'https://developer.huawei.com/repo/' }
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
