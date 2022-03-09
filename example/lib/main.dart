@@ -29,8 +29,8 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     initPlatformState();
-    Astroer.init(astroerEnvDev, 1, "6120180395d88561f4769b5b6ca01938e7f26211");
-    Astroer.setAppUserID(0);
+    Astroer.init(astroerEnvDev, 1);
+    // Astroer.setAppUser(0,"");
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.

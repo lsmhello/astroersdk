@@ -25,7 +25,7 @@ class Astroer {
   static const MethodChannel _channel = MethodChannel('astroer');
   static const String astroerVersion = '0.0.1 dev';
 
-  static init(int env, int appId, String secret) async {
+  static init(int env, int appId) async {
     if (env != 1 && env != 2) {
       AstroerConfig.env = env;
       Log.logger().e("unkown env value.");
@@ -33,7 +33,6 @@ class Astroer {
     }
 
     AstroerConfig.appId = appId;
-    AstroerConfig.secret = secret;
 
     _channel.setMethodCallHandler(astroerChannelHandleMethod);
     await SpUtil.getInstance();
@@ -59,11 +58,8 @@ class Astroer {
     AstroerConfig.appId = appId;
   }
 
-  static setAppUserID(int appUid) {
+  static setAppUser(int appUid, String secret) {
     AstroerConfig.appUid = appUid;
-  }
-
-  static setSecret(String secret) {
     AstroerConfig.secret = secret;
   }
 
